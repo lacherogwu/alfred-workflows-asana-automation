@@ -10,7 +10,7 @@ if(query.endsWith('-a:')){
     query = query.slice(0, -2);
 } else if(query.endsWith(':')){
     openUrl = true;
-    query = query.slice(0, -2);
+    query = query.slice(0, -1);
 }
 const [name, notes] = query.split(';');
 
