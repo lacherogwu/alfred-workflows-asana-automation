@@ -18,6 +18,8 @@ In order to add project to a task, you can use the "-p" flag followed by a space
 
 You can also use here the open URL feature by simply add the ":" character at the end, for e.g. "create a website -a :" or "create logo;use blue and grey colors -a -p :"
 
+In order to resync data like projects or users you can use the "asana" keyword and select the desired function.
+
 
 References:
 [1] https://asana.com/guide/help/api/api
