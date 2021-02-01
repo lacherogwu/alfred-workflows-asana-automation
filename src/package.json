@@ -1,0 +1,16 @@
+{
+  "name": "asana-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "asana": "^0.18.5",
+    "run-node": "^2.0.0"
+  }
+}
