@@ -4,6 +4,8 @@ const { output } = require('./utils');
 
 const client = asana.Client.create().useAccessToken(process.env.accessToken);
 
+const sync = process.argv.pop() === 'true';
+
 client.users.getUsers({ workspace: process.env.workspace })
     .then(res => {
         const data = res.data.map(user => ({
@@ -12,5 +14,9 @@ client.users.getUsers({ workspace: process.env.workspace })
         }));
 
         fs.writeFileSync('users.json', JSON.stringify({ items: data }));
-        output({ title: 'Users synced successfully!', subtitle: 'Press enter to close' });
+        if(sync){
+            output(data);
+        } else {
+            output({ title: 'Users synced successfully!', subtitle: 'Press enter to close' });
+        }
     });
