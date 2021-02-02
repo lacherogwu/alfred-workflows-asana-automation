@@ -20,6 +20,10 @@ You can also use here the open URL feature by simply add the ":" character at th
 
 In order to resync data like projects or users you can use the "asana" keyword and select the desired function.
 
+**Development**
+To run the script you the following command:
+```me=$me assignee=$assginee workspace=$workspace accessToken=$accessToken node index.js 'task title;task description'```
+Set the variables to your vars.
 
 References:
 [1] https://asana.com/guide/help/api/api

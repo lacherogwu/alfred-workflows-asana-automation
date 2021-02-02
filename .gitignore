@@ -2,3 +2,4 @@ node_modules
 .DS_Store
 src/users.json
 src/projects.json
+src/sections.json
