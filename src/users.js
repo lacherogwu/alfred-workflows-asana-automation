@@ -1,20 +1,34 @@
 const client = require('./api');
 const fs = require('fs');
-const { output } = require('./utils');
+const { output, promise, checkFile } = require('./utils');
+const { close: subtitle } = require('./text.json');
 
-const sync = process.argv.pop() === 'true';
+const sync = process.argv.pop() === 'sync';
 
-client.users.getUsers({ workspace: process.env.workspace })
-    .then(res => {
-        const data = res.data.map(user => ({
-            title: user.name,
-            arg: user.gid
-        }));
+const syncUsers = async () => {
+    const response = await promise(client.users.getUsers({ workspace: process.env.workspace }));
+    const data = response.data.map(user => ({
+        title: user.name,
+        subtitle: user.gid,
+        arg: user.gid
+    }));
+    fs.writeFile('users.json', JSON.stringify(data), () => {});
 
-        fs.writeFileSync('users.json', JSON.stringify({ items: data }));
-        if(sync){
-            output(data);
+    return data;
+};
+
+(async () => {
+    if(sync){
+        await syncUsers();
+        output({ title: 'Users synced successfully!', subtitle });
+    } else {
+        const file = checkFile('users.json', '[]');
+        if(file.length){
+            output(file);
         } else {
-            output({ title: 'Users synced successfully!', subtitle: 'Press enter to close' });
+            // write the file
+            const data = await syncUsers();
+            output(data);
         }
-    });
+    }
+})();

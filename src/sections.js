@@ -1,6 +1,7 @@
 const client = require('./api');
 const fs = require('fs');
-const { output, promise } = require('./utils');
+const { output, promise, checkFile } = require('./utils');
+const { close: subtitle } = require('./text.json');
 
 const getProjectSections = async id => {
     const response = await promise(client.sections.getSectionsForProject(id));
@@ -13,7 +14,6 @@ const getProjectSections = async id => {
 };
 
 const syncAllSections = async () => {
-
     const response = await promise(client.projects.getProjects({ workspace: process.env.workspace }));
     const projects = response.data.map(proj => proj.gid);
 
@@ -28,15 +28,7 @@ const syncAllSections = async () => {
 };
 
 (async () => {
-
-    const filename = 'sections.json';
-    let file;
-    if(fs.existsSync(filename)){
-        file = JSON.parse(fs.readFileSync(filename, { encoding: 'utf-8' }));
-    } else {
-        fs.writeFileSync('sections.json', '{}');
-        file = {};
-    }
+    const file = checkFile('sections.json', '{}');
 
     const projectId = process.env.projectId;
     if(projectId){
@@ -54,6 +46,6 @@ const syncAllSections = async () => {
         }
     } else {
         await syncAllSections();
-        output({ title: 'Sections synced successfully!', subtitle: 'Press enter to close' });
+        output({ title: 'Sections synced successfully!', subtitle });
     }
 })();

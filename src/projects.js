@@ -1,28 +1,34 @@
 const client = require('./api');
 const fs = require('fs');
 const { output, promise, checkFile } = require('./utils');
+const { close: subtitle } = require('./text.json');
 
-const sync = process.argv.pop() === 'true';
+const sync = process.argv.pop() === 'sync';
 
-(async () => {
-
-    const file = checkFile('projects.json');
-    console.log(file);
-
-    return;
-
+const syncProjects = async () => {
     const response = await promise(client.projects.getProjects({ workspace: process.env.workspace }));
     const data = response.data.map(proj => ({
         title: proj.name,
         subtitle: proj.gid,
         arg: proj.gid
     }));
+    fs.writeFile('projects.json', JSON.stringify(data), () => {});
 
-    fs.writeFileSync('projects.json', JSON.stringify({ items: data }));
+    return data;
+};
 
+(async () => {
     if(sync){
-        output(data);
+        await syncProjects();
+        output({ title: 'Projects synced successfully!', subtitle });
     } else {
-        output({ title: 'Projects synced successfully!', subtitle: 'Press enter to close' });
+        const file = checkFile('projects.json', '[]');
+        if(file.length){
+            output(file);
+        } else {
+            // write the file
+            const data = await syncProjects();
+            output(data);
+        }
     }
 })();

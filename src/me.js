@@ -1,6 +1,6 @@
 const client = require('./api');
 const { output, promise } = require('./utils');
-const { subtitle } = require('./text.json');
+const { copy: subtitle } = require('./text.json');
 
 (async () => {
     const response = await promise(client.users.me());
