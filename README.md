@@ -16,14 +16,19 @@ In order to assign a user to a task, you can use the "-a" flag followed by a spa
 
 In order to add project to a task, you can use the "-p" flag followed by a space at the end of your input, for e.g. "create a website -p"
 
-You can also use here the open URL feature by simply add the ":" character at the end, for e.g. "create a website -a :" or "create logo;use blue and grey colors -a -p :"
+In order to add a task to a section in a project you can use the "-s" flag followed by a space at the end of your input, make sure that the "-p" flag exists
 
-In order to resync data like projects or users you can use the "asana" keyword and select the desired function.
+You can also use here the open URL feature by simply add the ":" character at the end (before or after the flags), for e.g. "create a website : -a" or "create logo;use blue and grey colors -a -p :"
+
+In order to resync data like projects, sections or users you can use the "asana" keyword and select the desired function.
 
 **Development**
 To run the script you the following command:
-```me=$me assignee=$assginee workspace=$workspace accessToken=$accessToken node index.js 'task title;task description'```
+```me=$me workspace=$workspace accessToken=$accessToken node index.js 'task title;task description'```
 Set the variables to your vars.
+
+Optional variables:
+assignee, projectId, sectionId
 
 References:
 [1] https://asana.com/guide/help/api/api

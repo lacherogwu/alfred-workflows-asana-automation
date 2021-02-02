@@ -19,7 +19,11 @@ const [name, notes] = query.split(';');
         name,
         notes
     }));
-
     const url = response.permalink_url;
+
+    const sectionId = process.env.sectionId;
+    if(sectionId){
+        await promise(client.sections.addTask(sectionId, { task: response.gid }));
+    }
     if(openUrl) console.log(url);
 })();
