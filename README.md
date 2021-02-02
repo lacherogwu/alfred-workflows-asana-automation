@@ -6,6 +6,7 @@
 3. Set the workspace: write "asana" and click on "Workspaces", select the workspace you want and paste the gid in the "workspace" env variable
 
 **How to use:**
+
 In order to create a task, use the "task" keyword.
 The format of the input should be this: title;description
 for e.g. "create a website;check the email from John and create the website according to his instructions"
@@ -23,12 +24,17 @@ You can also use here the open URL feature by simply add the ":" character at th
 In order to resync data like projects, sections or users you can use the "asana" keyword and select the desired function.
 
 **Development**
+
 To run the script you the following command:
+
 ```me=$me workspace=$workspace accessToken=$accessToken node index.js 'task title;task description'```
+
 Set the variables to your vars.
 
-Optional variables:
+*Optional variables:*
+
 assignee, projectId, sectionId
 
-References:
+*References:*
+
 [1] https://asana.com/guide/help/api/api
