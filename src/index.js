@@ -9,15 +9,42 @@ if(query.endsWith(' :')){
     query = query.slice(0, -2);
 }
 
-const [name, notes] = query.split(';');
+let [title, description] = query.split(';');
+
+// html formatter
+const htmlFormat = [
+    { symbol: '*', tag: 'b' },
+    { symbol: '_', tag: 'em' },
+    { symbol: '~', tag: 'del' },
+    { symbol: '`', tag: 'code' },
+];
+
+htmlFormat.forEach(({ symbol, tag }) => {
+    if(!description) return;
+
+    const regex = new RegExp(`\\${symbol}([^${symbol}]*)\\${symbol}`, 'gm');
+    const match = description.match(regex);
+    if(!match) return;
+
+    match.forEach(m => {
+        let formatted = m;
+        for(let i=0; i<2; i++){
+            formatted = formatted.replace(symbol, `<${i > 0 ? '/' : ''}${tag}>`);
+        }
+        description = description.replace(m, formatted);
+    });
+});
+
+// new line
+if(description) description = description.replace(/\\n/gm, '\n');
 
 (async () => {
     const response = await promise(client.tasks.createTask({
         workspace: process.env.workspace,
         assignee: process.env.assignee ? process.env.assignee : process.env.me,
         projects: process.env.projectId ? [process.env.projectId] : undefined,
-        name: `${name || ''}`,
-        notes: `${notes || ''}`
+        name: `${title || ''}`,
+        html_notes: `<body>${description || ''}</body>`
     }));
     const url = response.permalink_url;
 
