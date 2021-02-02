@@ -23,7 +23,7 @@ You can also use here the open URL feature by simply add the ":" character at th
 
 In order to resync data like projects, sections or users you can use the "asana" keyword and select the desired function.
 
-**Development**
+**Development:**
 
 To run the script you the following command:
 
@@ -31,10 +31,9 @@ To run the script you the following command:
 
 Set the variables to your vars.
 
-*Optional variables:*
-
+**Optional variables:**
 assignee, projectId, sectionId
 
-*References:*
+**References:**
 
 [1] https://asana.com/guide/help/api/api
