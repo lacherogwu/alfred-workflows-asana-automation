@@ -40,5 +40,6 @@ assignee, projectId, sectionId
 
 [1] https://asana.com/guide/help/api/api
 
-GitHub URL:
+**GitHub URL:**
+
 https://github.com/lacherogwu/alfred-workflows-asana-automation
