@@ -39,3 +39,6 @@ assignee, projectId, sectionId
 **References:**
 
 [1] https://asana.com/guide/help/api/api
+
+GitHub URL:
+https://github.com/lacherogwu/alfred-workflows-asana-automation
