@@ -16,8 +16,8 @@ const [name, notes] = query.split(';');
         workspace: process.env.workspace,
         assignee: process.env.assignee ? process.env.assignee : process.env.me,
         projects: process.env.projectId ? [process.env.projectId] : undefined,
-        name: `${name}`,
-        notes: `${notes}`
+        name: `${name || ''}`,
+        notes: `${notes || ''}`
     }));
     const url = response.permalink_url;
 
