@@ -1,8 +1,6 @@
-const asana = require('asana');
+const client = require('./api');
 const fs = require('fs');
 const { output } = require('./utils');
-
-const client = asana.Client.create().useAccessToken(process.env.accessToken);
 
 const sync = process.argv.pop() === 'true';
 

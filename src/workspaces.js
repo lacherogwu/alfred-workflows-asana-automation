@@ -1,8 +1,6 @@
-const asana = require('asana');
+const client = require('./api');
 const { output } = require('./utils');
 const { subtitle } = require('./text.json');
-
-const client = asana.Client.create().useAccessToken(process.env.accessToken);
 
 client.workspaces.getWorkspaces()
     .then(res => {

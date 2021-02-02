@@ -1,15 +1,13 @@
-const asana = require('asana');
-const { output } = require('./utils');
+const client = require('./api');
+const { output, promise } = require('./utils');
 const { subtitle } = require('./text.json');
 
-const client = asana.Client.create().useAccessToken(process.env.accessToken);
-
-client.users.me().then(res => {
+(async () => {
+    const response = await promise(client.users.me());
     const data = {
-        title: `${res.name}(${res.email}) - ${res.gid}`,
+        title: `${response.name}(${response.email}) - ${response.gid}`,
         subtitle,
-        arg: res.gid
+        arg: response.gid
     };
-
     output(data);
-});
+})();
