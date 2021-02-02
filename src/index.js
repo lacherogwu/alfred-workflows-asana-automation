@@ -14,9 +14,9 @@ let [title, description] = query.split(';');
 // html formatter
 const htmlFormat = [
     { symbol: '*', tag: 'b' },
-    { symbol: '_', tag: 'em' },
-    { symbol: '~', tag: 'del' },
-    { symbol: '`', tag: 'code' },
+    // { symbol: '_', tag: 'em' },
+    // { symbol: '~', tag: 'del' },
+    // { symbol: '`', tag: 'code' },
 ];
 
 htmlFormat.forEach(({ symbol, tag }) => {
@@ -46,7 +46,8 @@ if(description) description = description.replace(/\\n/gm, '\n');
         name: `${title || ''}`,
         html_notes: `<body>${description || ''}</body>`
     }));
-    const url = response.permalink_url;
+
+    const url = `${response.permalink_url}/f`;
 
     const sectionId = process.env.sectionId;
     if(sectionId){

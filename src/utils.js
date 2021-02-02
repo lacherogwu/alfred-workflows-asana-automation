@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const output = data => console.log(JSON.stringify({ items: data.length ? data : [data] }));
 
-const promise = func => new Promise((resolve, reject) => func.then(res => resolve(res)).catch(err => reject(err)));
+const promise = func => new Promise((resolve, reject) => func.then(res => resolve(res)).catch(err => console.log(err?.value)));
 
 const checkFile = (filename, entry) => {
     let file;
