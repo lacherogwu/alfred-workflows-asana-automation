@@ -17,6 +17,9 @@ In order to assign a user to the task, you can use the "-a" flag followed by a s
 
 In order to add a project to the task, you can use the "-p" flag followed by a space at the end of your input, for e.g. "create a website -p"
 
+In order to add a tag to the task, you can use the "-t" flag followed by a space at the end of your input, for e.g. "create a website -t"
+
+
 In order to add a section to the task, you can use the "-s" flag followed by a space at the end of your input, make sure that the "-p" flag exists
 
 You can also use here the open URL feature by simply add the ":" character at the end (before or after the flags), for e.g. "create a website : -a" or "create logo;use blue and grey colors -a -p :"
