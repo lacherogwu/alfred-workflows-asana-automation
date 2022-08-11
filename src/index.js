@@ -43,6 +43,7 @@ if(description) description = description.replace(/\\n/gm, '\n');
         workspace: process.env.workspace,
         assignee: process.env.assignee ? process.env.assignee : process.env.me,
         projects: process.env.projectId ? [process.env.projectId] : undefined,
+        tags: process.env.tagId ? [process.env.tagId] : undefined,
         name: `${title || ''}`,
         html_notes: `<body>${description || ''}</body>`
     }));
